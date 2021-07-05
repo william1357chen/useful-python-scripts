@@ -1,0 +1,4 @@
+test*.py
+.vscode
+*.log
+__pycache__
