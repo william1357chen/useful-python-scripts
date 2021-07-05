@@ -1,7 +1,7 @@
 import inspect
 import logging
 import os
-import test
+
 # Step 1: Import your program here
 
 filename = 'my_log.log'
@@ -26,7 +26,7 @@ def main():
 
     # Step 3: Call the other program
     
-    test.func()
+    
 
     logging.info('Finished logging')
 
