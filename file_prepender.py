@@ -5,7 +5,7 @@ import subprocess
 # The file can be python scripts, text file, etc.
 
 
-def add_line_to_file(cmd, filename):
+def line_prependerv1(cmd, filename):
     result = subprocess.run(
         ['cat', filename], stdout=subprocess.PIPE, text=True, check=True)
     file_output = result.stdout
@@ -13,3 +13,10 @@ def add_line_to_file(cmd, filename):
 
     with open(filename, 'w') as f:
         f.write(file_output)
+
+
+def line_prependerv2(cmd, filename):
+    with open(filename, 'r+') as f:
+        content = f.read()
+        f.seek(0, 0)
+        f.write(cmd.strip('\r\n') + '\n' + content)

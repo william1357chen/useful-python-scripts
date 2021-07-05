@@ -1,6 +1,5 @@
 import os
 from os import listdir
-import subprocess
 from copy import copy
 # This script adds whatever you want to all files in
 # the current working directory without overwritting.
@@ -14,14 +13,11 @@ def add_line_to_every_file(cmd, file_extension):
 
             instance_ex = copy(instance).split('.')[-1]
             if instance_ex == file_extension:
-                add_line_to_file(cmd, instance)
+                line_prependerv2(cmd, instance)
 
 
-def add_line_to_file(cmd, filename):
-    result = subprocess.run(
-        ['cat', filename], stdout=subprocess.PIPE, text=True, check=True)
-    file_output = result.stdout
-    file_output = cmd + '\n' + file_output
-
-    with open(filename, 'w') as f:
-        f.write(file_output)
+def line_prependerv2(cmd, filename):
+    with open(filename, 'r+') as f:
+        content = f.read()
+        f.seek(0, 0)
+        f.write(cmd.strip('\r\n') + '\n' + content)
